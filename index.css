@@ -1,0 +1,27 @@
+.header {
+	height: 40px;
+	background-color: red;
+}
+
+.footer {
+	height: 40px;
+	background-color: green;
+}
+
+.note {
+	height: 100px;
+	width: 100px;
+	background-color: yellow;
+	margin: 10px 0;
+	box-shadow: 1px 1px 2px 2px grey;
+	position: relative;
+}
+
+.delete {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	height: 15px;
+	width: 15px;
+	background-color: green;
+}
