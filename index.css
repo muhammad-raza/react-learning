@@ -8,6 +8,10 @@
 	background-color: green;
 }
 
+.board {
+	position: relative;
+}
+
 .note {
 	height: 100px;
 	width: 100px;
@@ -24,4 +28,13 @@
 	height: 15px;
 	width: 15px;
 	background-color: green;
+}
+
+.add {
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background-color: black;
 }

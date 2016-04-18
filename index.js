@@ -24,35 +24,42 @@ var Main = React.createClass({
 	}
 });
 
-var Note = React.createClass({	
+var Note = React.createClass({		
 	remove: function(){
-		this.refs.note.getDOMNode
+		this.props.onRemove(this.props.value);
 	},
 	render: function() {
 		return (<div className="note">
 			<div>This is a Note</div>
-			<div ref="note" onClick={this.remove} className="delete"></div>			
+			<div ref="note" id={this.props.value} onClick={this.remove} className="delete"></div>			
 		</div>);		
 	}
 });
 
 var Board = React.createClass({	
 	getInitialState: function() {
-		return {count: 4}
+		return {noteArr: []}
 	},
-	getNotes: function(){
-		var notes = [];
-		for (var i=0; i < this.state.count; i++) {
-			notes.push(<Note key={i}/>);        	
-    	} 
-    	return notes;
-		
+	remove: function(index) {
+		var arr = this.state.noteArr;
+		arr.splice(arr.indexOf(index), 1);
+		this.setState({noteArr: arr});
+	},
+	add: function() {
+		var arr = this.state.noteArr;
+		arr.push(Math.floor((Math.random() * 10000) + 1));
+		this.setState({noteArr: arr});
+	},
+	eachNote: function(val, i){
+		return (<Note key={val} 
+				value={val} 
+				onRemove={this.remove}/>);
 	},
 	render: function() {
-		return (<div className="board">		
-			{this.getNotes().map(function(note){
-				return note
-			})}            		 		
+		{console.log(this.state.noteArr);}
+		return (<div className="board">	
+			<div onClick={this.add} className="add"></div>	
+			{this.state.noteArr.map(this.eachNote)}            		 		
 		</div>);		
 	}
 });
