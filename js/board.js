@@ -11,6 +11,9 @@ class Board extends React.Component {
 		this.eachNote = this.eachNote.bind(this);
 	}
 	remove(index) {
+		if (!index) {
+			throw new Error('id of note is required to delete');
+		}
 		var arr = this.state.noteArr;
 		arr.splice(arr.indexOf(index), 1);
 		this.setState({noteArr: arr});
@@ -20,15 +23,15 @@ class Board extends React.Component {
 		arr.push(Math.floor((Math.random() * 10000) + 1));
 		this.setState({noteArr: arr});
 	}
-	eachNote(val, i) {
+	eachNote(value, i) {
 		var remove = this.remove;
-		var properties = {val, remove}; 
-		return (<Note key={val} 
+		var properties = {value, remove}; 
+		return (<Note key={value} 
 			{...properties}/>);	
 	}
 	render() {
 		return (<div className="board">				
-			<div onClick={this.add} className="add"></div>	
+			<div onClick={this.add} className="addNote">Add</div>	
 			{this.state.noteArr.map(this.eachNote)}            		 		
 		</div>);			
 	}

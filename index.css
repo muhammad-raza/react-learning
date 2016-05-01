@@ -24,22 +24,21 @@
 	position: relative;
 }
 
-.delete {
+.deleteNote {
 	position: absolute;
 	right: 5px;
 	bottom: 5px;
-	height: 15px;
-	width: 15px;
-	background-color: green;
+	cursor: pointer;
+	text-decoration: underline;
+	
 }
 
-.add {
-	height: 15px;
-	width: 15px;
+.addNote {	
 	position: absolute;
 	right: 10px;
 	top: 10px;
-	background-color: black;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 .inputText {

@@ -11,8 +11,8 @@ class Note extends React.Component{
 	}
 	render() {
 		return (<div className="note">
-			<input className="inputText" type="text" ></input>			
-			<div ref="note" id={this.props.value} onClick={this.remove} className="delete"></div>			
+			<input className="inputText" placeholder="add todo" type="text" ></input>			
+			<div ref="note" id={this.props.value} onClick={this.remove} className="deleteNote">Remove Note</div>			
 		</div>);		
 	}
 }
