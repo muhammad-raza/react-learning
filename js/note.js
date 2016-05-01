@@ -7,11 +7,11 @@ class Note extends React.Component{
 		this.remove = this.remove.bind(this);
 	}
 	remove() {
-		this.props.onRemove(this.props.value);
+		this.props.remove(this.props.value);
 	}
 	render() {
 		return (<div className="note">
-			<div>This is a Note</div>			
+			<input className="inputText" type="text" ></input>			
 			<div ref="note" id={this.props.value} onClick={this.remove} className="delete"></div>			
 		</div>);		
 	}

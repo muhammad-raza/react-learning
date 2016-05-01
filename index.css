@@ -9,14 +9,17 @@
 }
 
 .board {
+	min-height: 240px;
 	position: relative;
 }
 
 .note {
-	height: 100px;
-	width: 100px;
+	display: inline-block;	
+	padding: 10px;
+	height: 200px;
+	width: 200px;
 	background-color: yellow;
-	margin: 10px 0;
+	margin: 10px;
 	box-shadow: 1px 1px 2px 2px grey;
 	position: relative;
 }
@@ -37,4 +40,10 @@
 	right: 10px;
 	top: 10px;
 	background-color: black;
+}
+
+.inputText {
+	width: 80%;
+    margin: auto;
+    display: block;
 }

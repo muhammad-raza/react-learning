@@ -21,9 +21,10 @@ class Board extends React.Component {
 		this.setState({noteArr: arr});
 	}
 	eachNote(val, i) {
+		var remove = this.remove;
+		var properties = {val, remove}; 
 		return (<Note key={val} 
-			value={val} 
-			onRemove={this.remove}/>);	
+			{...properties}/>);	
 	}
 	render() {
 		return (<div className="board">				
