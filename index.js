@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Board from './js/board'
+import Board from './js/board';
+import { Provider } from 'react-redux';
+import { createStore } from'redux';
+import boardReducer from './js/reducers/boardReducer';
 
-var Header = React.createClass({
+let Header = React.createClass({
 	render: function() {
 		return (<div className="header">
 			This is a header			
@@ -10,7 +13,7 @@ var Header = React.createClass({
 	}
 });
 
-var Footer = React.createClass({
+let Footer = React.createClass({
 	render: function() {
 		return (<div className="footer">
 			This is a footer			
@@ -18,16 +21,26 @@ var Footer = React.createClass({
 	}
 });
 
-var App = React.createClass({
+let All = React.createClass({
 	render: function() {
 		return <div>
 			<Header />
-			{this.props.children}
+			<Board />
 			<Footer />
-			</div>;		
+		</div>
+	}
+});
+
+let store = createStore(boardReducer);
+
+let App = React.createClass({	
+	render: function() {
+		return <Provider store={store}>
+			<All/>
+			</Provider>;		
 	}
 });
 
 
 
-ReactDOM.render(<App><Board /></App>, document.getElementById('app'));
+ReactDOM.render(<App></App>, document.getElementById('app'));
