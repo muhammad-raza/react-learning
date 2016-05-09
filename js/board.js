@@ -1,41 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Note from './note';
+import { connect } from 'react-redux'
+import * as boardActions from './action/boardActionCreator'
 
 class Board extends React.Component {
 	constructor() {
 		super();
-		this.state = {noteArr: []};
-		this.remove = this.remove.bind(this);
-		this.add = this.add.bind(this);
-		this.eachNote = this.eachNote.bind(this);
+		this.eachNote = this.eachNote.bind(this);		
 	}
-	remove(index) {
-		if (!index) {
-			throw new Error('id of note is required to delete');
-		}
-		var arr = this.state.noteArr;
-		arr.splice(arr.indexOf(index), 1);
-		this.setState({noteArr: arr});
+
+	eachNote(note, i) {		
+		return (<Note key={note.id} 
+			value={note}/>);	
 	}
-	add() {
-		var arr = this.state.noteArr;
-		arr.push(Math.floor((Math.random() * 10000) + 1));
-		this.setState({noteArr: arr});
-	}
-	eachNote(value, i) {
-		var remove = this.remove;
-		var properties = {value, remove}; 
-		return (<Note key={value} 
-			{...properties}/>);	
-	}
-	render() {
+	
+	render() {		
 		return (<div className="board">				
-			<div onClick={this.add} className="addNote">Add</div>	
-			{this.state.noteArr.map(this.eachNote)}            		 		
+			<div onClick={this.props.onAdd} className="addNote">Add</div>	
+			<ul>{this.props.notes.map(this.eachNote)}</ul>	
 		</div>);			
 	}
 }
 
-export default Board;
+let mapStateToProps = (state) => {
+	return {
+		notes: state.notes
+	}
+}
+
+let mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		onAdd: ()=>{
+			dispatch(boardActions.addNote());
+		} 
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
