@@ -6,26 +6,25 @@ import * as boardActions from './action/boardActionCreator'
 
 class Board extends React.Component {
 	constructor() {
-		super();
-		this.eachNote = this.eachNote.bind(this);		
+		super();		
 	}
 
-	eachNote(note, i) {		
+	eachNote(note, i) {	
 		return (<Note key={note.id} 
-			value={note}/>);	
+			note={note}/>);	
 	}
 	
-	render() {		
+	render() {			
 		return (<div className="board">				
 			<div onClick={this.props.onAdd} className="addNote">Add</div>	
-			<ul>{this.props.notes.map(this.eachNote)}</ul>	
+			<ul>{this.props.notes.map(this.eachNote.bind(this))}</ul>	
 		</div>);			
 	}
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => {		
 	return {
-		notes: state.notes
+		notes: state.boardReducer.notes
 	}
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Board from './js/board';
 import { Provider } from 'react-redux';
-import { createStore } from'redux';
+import { combineReducers, createStore } from'redux';
 import boardReducer from './js/reducers/boardReducer';
 
 let Header = React.createClass({
@@ -31,7 +31,9 @@ let All = React.createClass({
 	}
 });
 
-let store = createStore(boardReducer);
+let combinedReducers = combineReducers({boardReducer});
+
+let store = createStore(combinedReducers);
 
 let App = React.createClass({	
 	render: function() {
